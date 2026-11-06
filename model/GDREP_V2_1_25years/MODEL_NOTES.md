@@ -1,13 +1,13 @@
-# Bangalore model: equations and use
+# Bengaluru model: equations and use
 
 This application adapts the RabiesEcon framework described in the publications
-below to the Bangalore vaccination scenario. See [METHODS.md](../../METHODS.md)
+below to the Bengaluru vaccination scenario. See [METHODS.md](../../METHODS.md)
 for scenario assumptions and outcome definitions.
 
 ## Run
 
 After following the installation steps in [README.md](../../README.md), run these
-commands from the `bangalore_rabiesecon` directory:
+commands from the `bengaluru_rabiesecon` directory:
 
 ```bash
 # Open the dashboard
@@ -21,7 +21,7 @@ On Windows, `start_dashboard.bat` installs the dependencies and opens the dashbo
 
 ## Inputs
 
-The app and reproduction script load `bangalore_inputs.json`: a 50-year lead-in
+The app and reproduction script load `bengaluru_inputs.json`: a 50-year lead-in
 followed by five campaign years, with 90% PEP uptake in both arms.
 
 Use **Edit inputs** in the app, or supply a JSON file:

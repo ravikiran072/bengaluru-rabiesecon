@@ -1,4 +1,4 @@
-"""Recalculate the Bangalore scenario and export its results and figures."""
+"""Recalculate the Bengaluru scenario and export its results and figures."""
 import argparse
 import json
 from pathlib import Path

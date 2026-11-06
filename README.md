@@ -1,8 +1,8 @@
-# Rabies vaccination in Bangalore
+# Rabies vaccination in Bengaluru
 
-Supplementary analysis software for the Bangalore dog vaccination scenario. The
+Supplementary analysis software for the Bengaluru dog vaccination scenario. The
 application recalculates disease burden and economic outcomes from the supplied
-GDREP V2.1.25 model and opens with the parameters used in the Bangalore burden
+GDREP V2.1.25 model and opens with the parameters used in the Bengaluru burden
 report updated 4 November 2026.
 
 The five-year program delivers 567,353 dog vaccinations after a 50-year lead-in
@@ -88,7 +88,7 @@ This command runs the report scenario and writes its outputs to `results/`.
 Outputs are generated on demand and are not stored in the repository.
 
 For an alternative scenario, use a separate JSON file. Unspecified fields inherit
-the accepted Bangalore inputs:
+the accepted Bengaluru inputs:
 
 ```bash
 python reproduce.py --inputs alternative_inputs.json --out alternative_results
@@ -102,10 +102,10 @@ program vaccination, comparator vaccination, program PEP and comparator PEP.
 | Path | Contents |
 |---|---|
 | `app.py` | Streamlit interface |
-| `bangalore_inputs.json` | Complete accepted Bangalore inputs |
+| `bengaluru_inputs.json` | Complete accepted Bengaluru inputs |
 | `analysis.py` | Calculation and export functions |
 | `reproduce.py` | Command-line reproduction |
-| `model/program.py` | Bangalore scenario adapter |
+| `model/program.py` | Bengaluru scenario adapter |
 | `model/base_config.json` | Supplied engine configuration |
 | `model/GDREP_V2_1_25years/` | Source engine modules and model notes |
 | `METHODS.md` | Scenario specification and interpretation |

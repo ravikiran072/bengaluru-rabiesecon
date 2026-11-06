@@ -1,4 +1,4 @@
-"""Streamlit interface for the Bangalore rabies analysis."""
+"""Streamlit interface for the Bengaluru rabies analysis."""
 import copy
 import json
 
@@ -8,7 +8,7 @@ import streamlit as st
 
 from analysis import ROOT, burden_comparison_data, calculate, default_inputs, is_report_scenario, results_zip
 
-st.set_page_config(page_title="RabiesEcon | Bangalore", layout="wide")
+st.set_page_config(page_title="RabiesEcon | Bengaluru", layout="wide")
 
 
 @st.cache_data(show_spinner=False, max_entries=8)
@@ -160,12 +160,12 @@ if "inputs" not in st.session_state:
 
 with st.sidebar:
     st.title("RabiesEcon")
-    st.caption("Bangalore analysis")
+    st.caption("Bengaluru analysis")
     if st.button("Edit inputs", width="stretch", icon=":material/tune:"):
         st.session_state.editing_inputs = True
     st.button("Restore report defaults", on_click=restore_defaults, width="stretch")
 
-st.title("Bangalore rabies burden")
+st.title("Bengaluru rabies burden")
 st.caption("Dog vaccination, human health and economic outcomes | GDREP V2.1.25")
 
 serialized = json.dumps(st.session_state.inputs, sort_keys=True)
@@ -188,7 +188,7 @@ annual["dog_deaths_averted"] = annual.comparator_dog_rabies_deaths - annual.dog_
 st.caption(f"{number(p['human_population'])} people · {number(p['dog_population'])} dogs at campaign start · "
            f"{p['area_km2']:g} km² · {p['lead_in_years']}-year lead-in · {years}-year campaign")
 if is_report_scenario(p):
-    st.caption("Report scenario. Calculated using the Bangalore report inputs.")
+    st.caption("Report scenario. Calculated using the Bengaluru report inputs.")
 else:
     st.info("Modified scenario. Results use the edited inputs and are not the report estimates.")
 
@@ -209,10 +209,10 @@ with st.sidebar:
     st.markdown("**Comparator**")
     st.caption(f"{comparator_schedule.capitalize()}; {comparator_pep}.")
     st.download_button("Download results and figures", cached_download(serialized),
-        f"bangalore_{result['run_id']}.zip", "application/zip", width="stretch",
+        f"bengaluru_{result['run_id']}.zip", "application/zip", width="stretch",
         help="Exact inputs, unrounded CSV tables, and figures in PDF and SVG.")
     st.download_button("Download inputs", json.dumps(p, indent=2),
-        "bangalore_inputs.json", "application/json", width="stretch")
+        "bengaluru_inputs.json", "application/json", width="stretch")
     st.caption(f"Run {result['run_id']}")
 
 burden_tab, economics_tab = st.tabs(
@@ -335,10 +335,10 @@ if burden_tab.open:
                            "Annual totals are plotted at year end. The lead-in is numerical initialization; year zero is not a zero-burden observation.")
 
         with st.expander("Methods and interpretation"):
-            st.markdown(f"The supplied Bangalore adapter runs the GDREP V2.1.25 dog, human and economic equations. "
+            st.markdown(f"The supplied Bengaluru adapter runs the GDREP V2.1.25 dog, human and economic equations. "
                 f"The {p['lead_in_years']}-year vaccination lead-in follows 10,000 unvaccinated weekly initialization steps. "
                 "Populations are anchored at campaign start. Vaccination counts are converted to coverage using each year's opening dog population.")
-            st.markdown("Inputs define a deterministic scenario; they are not fitted to observed Bangalore annual rabies or PEP counts. "
+            st.markdown("Inputs define a deterministic scenario; they are not fitted to observed Bengaluru annual rabies or PEP counts. "
                 "No uncertainty interval is implied. D00 has no dog vaccination and no PEP and is distinct from the comparator shown here. "
                 "Monthly immunity interpolates immune and total counts before division. Annual mean immunity uses immune dog-years divided by all dog-years.")
             for warning in result["warnings"]:

@@ -1,4 +1,4 @@
-"""Bangalore analysis and portable results exports."""
+"""Bengaluru analysis and portable results exports."""
 from __future__ import annotations
 
 import io
@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent
 
 
 def default_inputs():
-    return json.loads((ROOT / "bangalore_inputs.json").read_text(encoding="utf-8"))
+    return json.loads((ROOT / "bengaluru_inputs.json").read_text(encoding="utf-8"))
 
 
 def calculate(inputs):

@@ -1,4 +1,4 @@
-"""GDREP V2.1.25.bangalore: program inputs around the frozen V2.1.25years engine.
+"""GDREP V2.1.25.bengaluru: program inputs around the frozen V2.1.25years engine.
 
 Only schedules, initialization scale, observation, and reporting are adapted.
 All disease, vaccination, human, PEP-demand, attribution, and cost equations
@@ -20,9 +20,9 @@ from rabies_econ.config import ModelError
 from rabies_econ.dog import DogModel
 from rabies_econ import engine
 
-VERSION='V2.1.25.bangalore'
+VERSION='V2.1.25.bengaluru'
 DEFAULTS={
- 'name':'Bangalore India','scenario_name':'Final Bangalore','area_km2':712.0,
+ 'name':'Bengaluru India','scenario_name':'Final Bengaluru','area_km2':712.0,
  'human_population':13000000.0,'dog_population':309000.0,
  'dog_input_mode':'count','humans_per_dog':42.0,'lead_in_years':25,
  'history_mode':'count','history_value':10000.0,'history_weeks':52,

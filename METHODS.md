@@ -1,4 +1,4 @@
-# Bangalore scenario specification
+# Bengaluru scenario specification
 
 The accepted analysis uses a 50-year vaccination lead-in followed by five campaign
 years. The dog population is anchored at 309,000 and the human population at
@@ -77,7 +77,7 @@ benefits beyond the five campaign years are excluded.
 ## Interpretation
 
 These inputs define a deterministic scenario. They are not fitted to observed
-Bangalore annual rabies deaths or PEP counts. No uncertainty interval is implied.
+Bengaluru annual rabies deaths or PEP counts. No uncertainty interval is implied.
 Human deaths rise from 17.4 in campaign year 4 to 22.5 in year 5. Year 5 retains
 approximately 1,379 clinical dog cases, so this run does not demonstrate
 elimination.
