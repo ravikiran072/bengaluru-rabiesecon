@@ -1,0 +1,110 @@
+# Bangalore scenario specification
+
+The accepted analysis uses a 50-year vaccination lead-in followed by five campaign
+years. The dog population is anchored at 309,000 and the human population at
+13 million at campaign start, in a transmission area of 712 km². Before the
+vaccination lead-in, the model performs 10,000 unvaccinated weekly initialization
+updates. The lead-in is a numerical initialization, not a historical population
+reconstruction.
+
+## Vaccination and transmission
+
+Historical and comparator vaccination each deliver 10,000 doses annually across
+52 model weeks, beginning in week 1. Program counts are 112,537; 105,581; 104,123;
+89,211; and 155,901. The adapter recalculates coverage each year as doses divided
+by opening dog population, subject to the original eligibility rules. All
+requested doses are delivered in the accepted scenario.
+
+The requested R₀ and its cap are both 2.0. The cap applies to the input parameter;
+it does not constrain a time-varying effective reproduction number. Z is 0.00002
+km² per infectious dog per week. Dog recruitment and natural mortality remain
+separate rates of 0.55 and 0.33 per dog-year. Incubation is 40 days; conversion
+uses the source model's 7.17703349282297 days per model week.
+
+Vaccine efficacy in susceptible dogs is 95%. Protection of vaccinated exposed
+dogs is 50%. The protected period is 26 weeks, subsequent waning is 1/52 per week,
+and the revaccination interval is 52 weeks. Clinical progression probability is
+45% and the dog infectious exit rate is 0.7 per model week. The source equations
+and cohort accounting are unchanged. Running instructions and model references are in
+[`MODEL_NOTES.md`](model/GDREP_V2_1_25years/MODEL_NOTES.md).
+
+## Human outcomes and PEP
+
+Human births are 15 per 1,000 people per year, and life expectancy is 69.8 years.
+PEP uptake is 90% throughout the lead-in and both campaign arms; efficacy is 93%.
+Human deaths use the source model's fatal clinical-onset measure. Human death
+exits and dog rabies death exits are separate exported flows.
+
+Annual PEP demand is 10 × max(actual human exposures, D00 null exposures) × PEP
+uptake. D00 has no dog vaccination and no PEP throughout the modeled history.
+This demand floor limits the reduction in total PEP use as true exposure falls.
+True-exposure PEP equals actual exposures multiplied by uptake. Other PEP is the
+remaining modeled demand; it does not classify individual treatment decisions.
+Courses are modeled equivalents, not injections or unique recipients.
+
+Expected detected human cases equal modeled deaths multiplied by 1% before the
+campaign and 10% during it. Detection changes reporting only.
+
+## Economic calculations
+
+Dog vaccination costs USD 3.21 per dose. PEP course cost is
+5 × (1.06 + 5.00 + 3.00) + 0.60 × 15.94 = USD 54.864. Calculations retain this
+unrounded value. Quarantine costs USD 74.38 with probability 0.0008 per suspected
+exposure; testing costs USD 3.19 with probability 0.011333333.
+
+Both arms include 200 investigations per year at USD 15.94 each. To retain the
+source cost equations, exposure-based investigation probability is zero and
+USD 3,188 is entered as other annual cost in each arm. This is the cost correction
+used in the accepted report. Spaying and neutering costs are zero.
+
+All amounts use the supplied USD unit costs without escalation; a common price
+year was not specified. Costs and health outcomes are discounted at 3% annually,
+with year-end timing from campaign start. Shared historical costs cancel from
+the incremental comparison.
+
+Direct financial benefits comprise avoided PEP, quarantine and testing costs.
+The benefit–cost denominator is additional vaccination spending; equal fixed
+investigation costs cancel. Savings are counted once. Cost-effectiveness ratios
+use net additional cost divided by discounted deaths or model DALYs averted.
+DALYs retain the original age-weighted years-of-life-lost formula, with an average
+age at death of 15 years and life expectancy of 69.8 years.
+
+No monetary value of mortality reduction is selected. The reported breakeven
+value is a threshold, not an estimated willingness to pay. Travel, household
+time, productivity, nonfatal bite morbidity and animal welfare are not monetized;
+benefits beyond the five campaign years are excluded.
+
+## Interpretation
+
+These inputs define a deterministic scenario. They are not fitted to observed
+Bangalore annual rabies deaths or PEP counts. No uncertainty interval is implied.
+Human deaths rise from 17.4 in campaign year 4 to 22.5 in year 5. Year 5 retains
+approximately 1,379 clinical dog cases, so this run does not demonstrate
+elimination.
+
+A five-year continuation of baseline vaccination gives 4.06% variation in annual
+clinical dog cases and 0.568% variation in opening dog population, measured as
+range divided by maximum. The fixed 50-year lead-in does not meet the 1%
+criterion for both quantities. Residual oscillations are retained.
+
+## Output definitions
+
+These files are generated by `reproduce.py` or the application download. They are
+not precomputed files in the repository. Annual table totals are calculated
+before rounding.
+
+| File | Unit and time basis |
+|---|---|
+| `annual.csv` | Campaign years; expected event counts, fractions, costs in USD; discounted columns explicitly named |
+| `burden_comparison.csv` | Annual clinical dog cases and human deaths, plus cumulative sums over campaign years only, for both arms |
+| `full_timeline.csv` | Annual dog and human outcomes through the lead-in and campaign, with model year and phase |
+| `weekly_immunity.csv` | Dog compartment counts and immune percentages at campaign start and weekly endpoints |
+| `monthly_immunity.csv` | Current immune and total dog counts interpolated before division; percent scale 0–100 |
+| `benefit_cost.csv` | Annual incremental economic flows; `pv_` columns are discounted to campaign start |
+| `inputs.json` | Complete scenario inputs |
+| `engine_config.json` | Evaluated source-engine inputs, including calculated coverage schedules |
+| `summary.json` | Five-year totals and economic measures |
+
+Annual mean immunity is immune dog-years divided by all dog-years. Monthly
+immunity is a current proportion, not a moving average. Clinical onset, rabies
+death exits, detected cases, exposure counts and PEP demand are distinct outcomes.
